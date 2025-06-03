@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Amar Cheema - Full Stack Developer specializing in React, Node.js, and modern web development">
+    <meta name="keywords" content="full stack developer, web developer, react developer, node.js, portfolio">
+    <meta name="author" content="Amar Cheema">
+    
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:title" content="Amar Cheema - Full Stack Developer">
+    <meta property="og:description" content="I build scalable web applications and deliver solutions quickly">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourdomain.com">
+    <meta property="og:image" content="https://i.postimg.cc/rwxrTb0J/Black-and-White-Modern-Linkedln-Profile-Picture.jpg">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:creator" content="@codewithamar">
+    
+    <title>Amar Cheema - Full Stack Web Developer</title>
+    <link rel="canonical" href="https://yourdomain.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-dark: #1e1e1e;
+            --bg-darker: #171717;
+            --text-light: #f0f0f0;
+            --text-lighter: #ffffff;
+            --accent: #00bcd4;
+            --accent-hover: #00e5ff;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+            --border-radius: 8px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'JetBrains Mono', 'Courier New', monospace;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        
+        /* Skip to content link */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: var(--accent);
+            color: var(--bg-darker);
+            padding: 8px;
+            z-index: 1001;
+        }
+        
+        .skip-link:focus {
+            top: 0;
+        }
+        
+        /* Typography */
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+        
+        h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            background: linear-gradient(45deg, var(--accent), #00e5ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        h2 {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            position: relative;
+            display: inline-block;
+            margin-bottom: 2.5rem;
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+        
+        p {
+            margin-bottom: 1.5rem;
+            font-size: clamp(1rem, 1.5vw, 1.1rem);
+        }
+        
+        /* Container */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(30, 30, 30, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem 0;
+            box-shadow: var(--shadow);
+            z-index: 1000;
+            transition: var(--transition);
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: clamp(1.4rem, 3vw, 1.8rem);
+            font-weight: 700;
+            color: var(--text-lighter);
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: var(--accent);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: clamp(1rem, 2vw, 2rem);
+        }
+        
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+            font-weight: 500;
+            position: relative;
+            transition: var(--transition);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: var(--transition);
+        }
+        
+        .nav-links a:hover,
+        .nav-links a:focus {
+            color: var(--accent);
+            outline: none;
+        }
+        
+        .nav-links a:hover::after,
+        .nav-links a:focus::after {
+            width: 100%;
+        }
+        
+        .mobile-menu {
+            display: none;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: var(--text-light);
+            font-size: 1.5rem;
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            width: 100%;
+        }
+        
+        .hero-text {
+            flex: 1;
+            max-width: 700px;
+        }
+        
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .profile-container {
+            width: clamp(220px, 35vw, 350px);
+            height: clamp(220px, 35vw, 350px);
+            border-radius: 50%;
+            overflow: hidden;
+            border: 5px solid var(--accent);
+            position: relative;
+            box-shadow: 0 0 40px rgba(0, 188, 212, 0.4);
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .profile-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(0, 188, 212, 0.1), transparent);
+            animation: rotate 15s linear infinite;
+            z-index: 2;
+        }
+        
+        .profile-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .profile-container:hover img {
+            transform: scale(1.05);
+        }
+        
+        .hero h2 {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            margin-bottom: 1.5rem;
+            color: var(--text-light);
+        }
+        
+        .hero h2::after {
+            display: none;
+        }
+        
+        .hero p {
+            font-size: clamp(1rem, 1.8vw, 1.2rem);
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 32px;
+            background-color: var(--accent);
+            color: var(--bg-darker);
+            text-decoration: none;
+            font-weight: 700;
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+            border: 2px solid var(--accent);
+            font-size: clamp(1rem, 1.5vw, 1.1rem);
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 188, 212, 0.3);
+        }
+        
+        .btn:hover,
+        .btn:focus {
+            background-color: transparent;
+            color: var(--accent);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 188, 212, 0.5);
+            outline: none;
+        }
+        
+       
+        /* Testimonials Section */
+        .testimonials {
+            padding: clamp(3rem, 6vw, 6rem) 0;
+            background-color: var(--bg-darker);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .testimonials h2 {
+            text-align: center;
+            width: 100%;
+            margin-bottom: 3rem;
+        }
+        
+        .testimonials h2::after {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .testimonials-container {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            height: 300px;
+            overflow: hidden;
+        }
+        
+        .testimonial {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+        
+        .testimonial.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .testimonial-content {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            box-shadow: var(--shadow);
+            max-width: 700px;
+        }
+        
+        .testimonial-content::before {
+            content: "“";
+            position: absolute;
+            top: -25px;
+            left: 20px;
+            font-size: 5rem;
+            color: var(--accent);
+            opacity: 0.3;
+            font-family: Georgia, serif;
+            line-height: 1;
+        }
+        
+        .testimonial-content p {
+            font-style: italic;
+            margin-bottom: 0;
+            font-size: clamp(1rem, 1.8vw, 1.2rem);
+            position: relative;
+            z-index: 2;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .author-image {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 2px solid var(--accent);
+        }
+        
+        .author-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .author-details h4 {
+            margin-bottom: 0.3rem;
+            color: var(--text-lighter);
+        }
+        
+        .author-details p {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 0;
+        }
+        
+        .testimonial-nav {
+            display: flex;
+            justify-content: center;
+            margin-top: 2rem;
+            gap: 10px;
+        }
+        
+        .testimonial-nav button {
+            background: none;
+            border: none;
+            color: var(--text-light);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+        
+        .testimonial-nav button:hover {
+            color: var(--accent);
+            background-color: rgba(0, 188, 212, 0.1);
+        }
+        
+        .testimonial-dots {
+            display: flex;
+            justify-content: center;
+            margin-top: 1.5rem;
+            gap: 10px;
+        }
+        
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .dot.active {
+            background-color: var(--accent);
+            transform: scale(1.2);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .testimonials-container {
+                height: 380px;
+            }
+            
+            .testimonial-content {
+                padding: 1.5rem 1rem;
+            }
+        }
+    /* Footer */
+    .footer {
+        background-color: var(--bg-darker);
+        padding: clamp(2rem, 4vw, 4rem) 0 2rem;
+        margin-top: auto;
+    }
+    
+    .footer-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 2rem;
+    }
+    
+    .footer-col {
+        flex: 1;
+        min-width: min(250px, 100%);
+    }
+    
+    .footer-col h3 {
+        font-size: clamp(1.2rem, 2vw, 1.5rem);
+        margin-bottom: 1.5rem;
+        color: var(--text-lighter);
+    }
+    
+    .footer-col h3::after {
+        bottom: -8px;
+    }
+    
+    .footer-links {
+        list-style: none;
+    }
+    
+    .footer-links li {
+        margin-bottom: 0.8rem;
+    }
+    
+    .footer-links a {
+        color: var(--text-light);
+        text-decoration: none;
+        transition: var(--transition);
+        display: inline-block;
+    }
+    
+    .footer-links a:hover,
+    .footer-links a:focus {
+        color: var(--accent);
+        transform: translateX(5px);
+        outline: none;
+    }
+    
+    .social-links {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1.5rem;
+    }
+    
+    .social-links a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: clamp(35px, 5vw, 40px);
+        height: clamp(35px, 5vw, 40px);
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        color: var(--text-light);
+        transition: var(--transition);
+    }
+    
+    .social-links a:hover,
+    .social-links a:focus {
+        background-color: var(--accent);
+        color: var(--bg-darker);
+        transform: translateY(-5px);
+        outline: none;
+    }
+    
+    .copyright {
+        text-align: center;
+        padding-top: 2rem;
+        margin-top: 2rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        font-size: clamp(0.8rem, 1.5vw, 0.9rem);
+        color: rgba(255, 255, 255, 0.6);
+        width: 100%;
+    }
+    
+    /* Background Animation */
+    .code-background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.05;
+        overflow: hidden;
+        z-index: 1;
+    }
+    
+    .code-line {
+        position: absolute;
+        font-family: 'JetBrains Mono', monospace;
+        color: var(--accent);
+        font-size: clamp(0.8rem, 1.5vw, 1rem);
+        white-space: nowrap;
+        animation: slide 15s linear infinite;
+    }
+    
+    @keyframes slide {
+        0% { transform: translateY(-100%); }
+        100% { transform: translateY(100vh); }
+    }
+    
+    @keyframes float {
+        0% { transform: translateY(0px); }
+        50% { transform: translateY(-20px); }
+        100% { transform: translateY(0px); }
+    }
+    
+    @keyframes rotate {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .mobile-menu {
+            display: block;
+        }
+        
+        .nav-links {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background-color: var(--bg-darker);
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem 0;
+            clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+            transition: var(--transition);
+        }
+        
+        .nav-links.active {
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+        }
+        
+        .nav-links li {
+            margin: 1rem 0;
+        }
+        
+        .hero-content {
+            flex-direction: column;
+            text-align: center;
+            gap: 40px;
+        }
+        
+        .hero-text {
+            order: 2;
+            text-align: center;
+        }
+        
+        .hero p {
+            margin: 0 auto 2.5rem;
+        }
+        
+        .hero-image {
+            order: 1;
+        }
+        .testimonials-container {
+            height: 380px;
+        }
+        
+        .testimonial-content {
+            padding: 1.5rem 1rem;
+        }
+    }
+    </style>
+</head>
+<body>
+    <!-- Skip to Content -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
+    <!-- Navbar -->
+    <nav class="navbar" aria-label="Main Navigation">
+        <div class="container nav-container">
+            <a href="#" class="logo" aria-label="Home">AMAR <span>CHEEMA</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="skills.html">Skills</a></li>
+                <li><a href="snippets.html">Blog</a></li>
+                <li><a href="connect.html">Contact</a></li>
+            </ul>
+            <button class="mobile-menu" aria-label="Toggle navigation">
+                <i class="fas fa-bars" aria-hidden="true"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <main id="main-content">
+        <section class="hero" aria-labelledby="hero-heading">
+            <div class="code-background" id="codeBackground"></div>
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <h2 id="hero-heading">Hi, I'm AMAR CHEEMA</h2>
+                        <h1>Full Stack Web Developer</h1>
+                        <p>I build scalable web applications, write clean and efficient code, and deliver solutions quickly. Passionate about creating seamless digital experiences that solve real-world problems.</p>
+                        <a href="projects.html" class="btn">View My Work</a>
+                    </div>
+                    <div class="hero-image">
+                        <div class="profile-container">
+                            <img 
+                                src="https://i.postimg.cc/rwxrTb0J/Black-and-White-Modern-Linkedln-Profile-Picture.jpg" 
+                                alt="Professional portrait of Amar Cheema"
+                                width="350"
+                                height="350"
+                                loading="lazy"
+                            >
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    <!-- Testimonials Section (Replaced Tech Stack) -->
+    <section class="testimonials" aria-labelledby="testimonials-heading">
+        <div class="container">
+            <h2 id="testimonials-heading">What People Say</h2>
+            <div class="testimonials-container">
+                <div class="testimonial active" id="testimonial1">
+                    <div class="testimonial-content">
+                        <p>Amar delivered our project ahead of schedule with exceptional attention to detail. His React skills are top-notch and he consistently found innovative solutions to complex problems.</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-image">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Sarah Johnson" loading="lazy">
+                        </div>
+                        <div class="author-details">
+                            <h4>Sarah Johnson</h4>
+                            <p>CTO, TechInnovate</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial" id="testimonial2">
+                    <div class="testimonial-content">
+                        <p>Working with Amar was a game-changer for our startup. He built our entire backend infrastructure with Node.js and MongoDB that scaled perfectly as we grew. Highly recommend!</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-image">
+                            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Michael Chen" loading="lazy">
+                        </div>
+                        <div class="author-details">
+                            <h4>Michael Chen</h4>
+                            <p>Founder, StartupHub</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial" id="testimonial3">
+                    <div class="testimonial-content">
+                        <p>Amar's full-stack expertise helped us completely revamp our e-commerce platform. His clean code and thorough documentation made future updates a breeze. Will hire again!</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-image">
+                            <img src="https://randomuser.me/api/portraits/men/62.jpg" alt="David Rodriguez" loading="lazy">
+                        </div>
+                        <div class="author-details">
+                            <h4>David Rodriguez</h4>
+                            <p>E-commerce Director, RetailPlus</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="testimonial-nav">
+                <button id="prev-testimonial" aria-label="Previous testimonial">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button id="next-testimonial" aria-label="Next testimonial">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+            
+            <div class="testimonial-dots">
+                <span class="dot active" data-testimonial="0"></span>
+                <span class="dot" data-testimonial="1"></span>
+                <span class="dot" data-testimonial="2"></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ... (existing footer remains the same) ... -->
+
+    <script>
+        // ... (existing JavaScript remains the same) ...
+        
+        // Testimonial Carousel
+        const testimonials = document.querySelectorAll('.testimonial');
+        const dots = document.querySelectorAll('.dot');
+        const prevBtn = document.getElementById('prev-testimonial');
+        const nextBtn = document.getElementById('next-testimonial');
+        let currentIndex = 0;
+        let autoSlideInterval;
+        
+        function showTestimonial(index) {
+            // Hide all testimonials
+            testimonials.forEach(testimonial => {
+                testimonial.classList.remove('active');
+            });
+            
+            // Remove active class from all dots
+            dots.forEach(dot => {
+                dot.classList.remove('active');
+            });
+            
+            // Show selected testimonial
+            testimonials[index].classList.add('active');
+            
+            // Activate corresponding dot
+            dots[index].classList.add('active');
+            
+            currentIndex = index;
+        }
+        
+        function nextTestimonial() {
+            let nextIndex = currentIndex + 1;
+            if (nextIndex >= testimonials.length) {
+                nextIndex = 0;
+            }
+            showTestimonial(nextIndex);
+        }
+        
+        function prevTestimonial() {
+            let prevIndex = currentIndex - 1;
+            if (prevIndex < 0) {
+                prevIndex = testimonials.length - 1;
+            }
+            showTestimonial(prevIndex);
+        }
+        
+        function startAutoSlide() {
+            autoSlideInterval = setInterval(nextTestimonial, 5000);
+        }
+        
+        function stopAutoSlide() {
+            clearInterval(autoSlideInterval);
+        }
+        
+        // Event listeners
+        nextBtn.addEventListener('click', () => {
+            nextTestimonial();
+            stopAutoSlide();
+            startAutoSlide();
+        });
+        
+        prevBtn.addEventListener('click', () => {
+            prevTestimonial();
+            stopAutoSlide();
+            startAutoSlide();
+        });
+        
+        dots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                const testimonialIndex = parseInt(dot.getAttribute('data-testimonial'));
+                showTestimonial(testimonialIndex);
+                stopAutoSlide();
+                startAutoSlide();
+            });
+        });
+        
+        // Start auto sliding
+        startAutoSlide();
+        
+        // Pause auto slide when hovering over testimonials
+        const testimonialsContainer = document.querySelector('.testimonials-container');
+        testimonialsContainer.addEventListener('mouseenter', stopAutoSlide);
+        testimonialsContainer.addEventListener('mouseleave', startAutoSlide);
+    </script>
+    <!-- Footer -->
+    <footer class="footer" aria-label="Footer">
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-col">
+                    <h3>AMAR CHEEMA</h3>
+                    <p>Full Stack Web Developer specializing in creating efficient, scalable web applications with cutting-edge technologies.</p>
+                    <div class="social-links">
+                        <a href="https://github.com/AmarCheema" target="_blank" aria-label="GitHub">
+                            <i class="fab fa-github" aria-hidden="true"></i>
+                        </a>
+                        <a href="https://x.com/codewithamar" target="_blank" aria-label="Twitter">
+                            <i class="fab fa-twitter" aria-hidden="true"></i>
+                        </a>
+                        <a href="https://dev.to/codewithamar" target="_blank" aria-label="Dev.to Blog">
+                            <i class="fab fa-dev" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="projects.html">Projects</a></li>
+                        <li><a href="skills.html">Skills</a></li>
+                        <li><a href="snippets.html">Blog</a></li>
+                        <li><a href="connect.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Get In Touch</h3>
+                    <ul class="footer-links">
+                        <li><a href="mailto:ammarcheemaofficial@gmail.com">ammarcheemaofficial@gmail.com</a></li>
+                        <li><a href="https://dev.to/codewithamar" target="_blank">Dev</a></li>
+                        <li><a href="https://github.com/AmarCheema" target="_blank">GitHub</a></li>
+                        <li><a href="https://x.com/codewithamar" target="_blank">Twitter</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; <span id="current-year"></span> Amar Cheema. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileMenu.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            const isExpanded = navLinks.classList.contains('active');
+            mobileMenu.setAttribute('aria-expanded', isExpanded);
+        });
+        
+        // Generate code background
+        const codeBackground = document.getElementById('codeBackground');
+        const codeLines = [
+            'function buildProject(idea) {',
+            '  const solution = createSolution(idea);',
+            '  solution.optimize();',
+            '  solution.test();',
+            '  return solution.deploy();',
+            '}',
+            'class Developer {',
+            '  constructor(name) {',
+            '    this.name = name;',
+            '    this.skills = [];',
+            '  }',
+            '  learn(skill) {',
+            '    this.skills.push(skill);',
+            '  }',
+            '}',
+            'const amar = new Developer("Amar Cheema");',
+            'amar.learn("React");',
+            'amar.learn("Node.js");',
+            'const createWebApp = () => {',
+            '  // Build amazing things',
+            '  return "Success!";',
+            '};',
+            'const portfolio = {',
+            '  projects: 15,',
+            '  experience: "5+ years",',
+            '  technologies: ["JavaScript", "Python", "React", "Node.js"]',
+            '};'
+        ];
+        
+        for (let i = 0; i < 20; i++) {
+            const codeLine = document.createElement('div');
+            codeLine.classList.add('code-line');
+            codeLine.textContent = codeLines[Math.floor(Math.random() * codeLines.length)];
+            codeLine.style.left = `${Math.random() * 100}%`;
+            codeLine.style.animationDelay = `${Math.random() * 5}s`;
+            codeLine.style.animationDuration = `${15 + Math.random() * 10}s`;
+            codeBackground.appendChild(codeLine);
+        }
+        
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.padding = '1rem 0';
+                navbar.style.backgroundColor = 'rgba(23, 23, 23, 0.98)';
+            } else {
+                navbar.style.padding = '1.5rem 0';
+                navbar.style.backgroundColor = 'rgba(30, 30, 30, 0.95)';
+            }
+        });
+        
+        // Update copyright year
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+        
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                mobileMenu.setAttribute('aria-expanded', 'false');
+            });
+        });
+    </script>
+</body>
+</html>

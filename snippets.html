@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Snippets | Reusable Developer Snippets - Amar Cheema</title>
+    <meta name="description" content="Collection of reusable code snippets for JavaScript, React, Node.js, HTML and CSS. Copy-paste solutions for common web development tasks.">
+    <meta name="keywords" content="code snippets, javascript examples, react code, node.js snippets, html css tricks, web development resources">
+    <meta name="author" content="Amar Cheema">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/themes/prism-tomorrow.min.css">
+    <style>
+        :root {
+            --bg-dark: #1e1e1e;
+            --bg-darker: #171717;
+            --text-light: #f0f0f0;
+            --text-lighter: #ffffff;
+            --accent: #00bcd4;
+            --accent-hover: #00e5ff;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+            --border-radius: 8px;
+            --card-bg: rgba(30, 30, 30, 0.7);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'JetBrains Mono', 'Courier New', monospace;
+            background: linear-gradient(135deg, var(--bg-darker) 0%, var(--bg-dark) 100%);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+            position: relative;
+        }
+        
+        /* Typography */
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            background: linear-gradient(45deg, var(--accent), #00e5ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        h2 {
+            font-size: 2.5rem;
+            position: relative;
+            display: inline-block;
+            margin-bottom: 2.5rem;
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+        
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+        
+        /* Container */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(30, 30, 30, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem 0;
+            box-shadow: var(--shadow);
+            z-index: 1000;
+            transition: var(--transition);
+            border-bottom: 1px solid rgba(0, 188, 212, 0.1);
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-lighter);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo span {
+            color: var(--accent);
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            color: var(--accent);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 2rem;
+        }
+        
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 500;
+            position: relative;
+            transition: var(--transition);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: var(--transition);
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .nav-links a.active {
+            color: var(--accent);
+        }
+        
+        .nav-links a.active::after {
+            width: 100%;
+        }
+        
+        .mobile-menu {
+            display: none;
+            cursor: pointer;
+        }
+        
+        /* Page Header */
+        .page-header {
+            padding: 140px 0 60px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .page-header h1 {
+            margin-bottom: 1rem;
+        }
+        
+        .page-header p {
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .header-decoration {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 15rem;
+            opacity: 0.02;
+            z-index: -1;
+            color: var(--accent);
+            pointer-events: none;
+        }
+        
+        /* Search and Categories */
+        .search-section {
+            max-width: 800px;
+            margin: 0 auto 3rem;
+        }
+        
+        .search-container {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+        
+        .search-container input {
+            width: 100%;
+            padding: 15px 20px 15px 50px;
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: var(--border-radius);
+            color: var(--text-light);
+            font-family: inherit;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            backdrop-filter: blur(5px);
+        }
+        
+        .search-container input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(0, 188, 212, 0.2);
+        }
+        
+        .search-container i {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--accent);
+        }
+        
+        .categories {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .category-btn {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-light);
+            padding: 0.8rem 1.5rem;
+            border-radius: var(--border-radius);
+            font-family: inherit;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            backdrop-filter: blur(5px);
+        }
+        
+        .category-btn:hover, .category-btn.active {
+            background: var(--accent);
+            color: var(--bg-darker);
+            border-color: var(--accent);
+        }
+        
+        /* Stats */
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+        
+        .stat-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            text-align: center;
+            min-width: 150px;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        /* Snippets Grid */
+        .snippets-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2.5rem;
+            padding: 3rem 0 6rem;
+        }
+        
+        .snippet-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(5px);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        
+        .snippet-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            border-color: rgba(0, 188, 212, 0.3);
+        }
+        
+        .snippet-header {
+            padding: 1.5rem 1.5rem 0.5rem;
+        }
+        
+        .snippet-title {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-lighter);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .snippet-title i {
+            color: var(--accent);
+        }
+        
+        .snippet-description {
+            margin-bottom: 1rem;
+            color: rgba(255, 255, 255, 0.8);
+            min-height: 60px;
+        }
+        
+        .snippet-meta {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .snippet-language {
+            background: rgba(0, 188, 212, 0.15);
+            color: var(--accent);
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        
+        .snippet-usage {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-light);
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+        }
+        
+        .snippet-code {
+            position: relative;
+            background: #1d1f21;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .snippet-code pre {
+            margin: 0;
+            padding: 1.5rem;
+            overflow-x: auto;
+            font-size: 0.9rem;
+            flex-grow: 1;
+        }
+        
+        .snippet-actions {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.8rem 1.5rem;
+            background: rgba(0, 0, 0, 0.2);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .copy-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: var(--text-light);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: inherit;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .copy-btn:hover {
+            background: var(--accent);
+            color: var(--bg-darker);
+        }
+        
+        .save-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-light);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .save-btn:hover {
+            color: var(--accent);
+        }
+        
+        /* Footer */
+        .footer {
+            background-color: var(--bg-darker);
+            padding: 4rem 0 2rem;
+            border-top: 1px solid rgba(0, 188, 212, 0.1);
+        }
+        
+        .footer-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        
+        .footer-col {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-col h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-lighter);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: var(--transition);
+            display: inline-block;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent);
+            transform: translateX(5px);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--text-light);
+            transition: var(--transition);
+        }
+        
+        .social-links a:hover {
+            background-color: var(--accent);
+            color: var(--bg-darker);
+            transform: translateY(-5px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+             
+        /* Background Animation */
+        .code-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.05;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .code-line {
+            position: absolute;
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--accent);
+            font-size: 1rem;
+            white-space: nowrap;
+            animation: slide 15s linear infinite;
+        }
+        
+        .code-line {
+            position: absolute;
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--accent);
+            font-size: 1rem;
+            white-space: nowrap;
+            animation: slide 15s linear infinite;
+        }
+        
+        @keyframes slide {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100vh); }
+        }
+        
+        /* Animation for snippets */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .snippet-card {
+            animation: fadeIn 0.6s ease forwards;
+            animation-delay: calc(var(--delay) * 0.1s);
+            opacity: 0;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            h1 {
+                font-size: 3rem;
+            }
+            
+            .snippets-grid {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-menu {
+                display: block;
+                font-size: 1.5rem;
+            }
+            
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--bg-darker);
+                flex-direction: column;
+                align-items: center;
+                padding: 2rem 0;
+                clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+                transition: var(--transition);
+            }
+            
+            .nav-links.active {
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+            }
+            
+            .nav-links li {
+                margin: 1rem 0;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            .page-header {
+                padding: 120px 0 40px;
+            }
+            
+            .header-decoration {
+                font-size: 10rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+            
+            .container {
+                width: 95%;
+            }
+            
+            .snippets-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-container {
+                flex-direction: column;
+            }
+            
+            .stat-card {
+                min-width: 120px;
+                padding: 1rem;
+            }
+            
+            .stat-number {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo"><i class="fas fa-code"></i>AMAR <span>CHEEMA</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="skills.html">Skills</a></li>
+                <li><a href="snippets.html" class="active">Code Snippets</a></li>
+                <li><a href="connect.html">Contact</a></li>
+            </ul>
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Background Animation -->
+    <div class="code-background" id="codeBackground"></div>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <div class="header-decoration"><i class="fas fa-code"></i></div>
+            <h1>Code Snippets</h1>
+            <p>Reusable code snippets to accelerate your development workflow. Copy and paste directly into your projects.</p>
+        </div>
+    </section>
+
+    <!-- Search and Categories -->
+    <section class="search-section container">
+        <div class="search-container">
+            <i class="fas fa-search"></i>
+            <input type="text" id="searchInput" placeholder="Search snippets...">
+        </div>
+        
+        <div class="categories">
+            <button class="category-btn active" data-category="all">All Snippets</button>
+            <button class="category-btn" data-category="javascript">JavaScript</button>
+            <button class="category-btn" data-category="html">HTML</button>
+            <button class="category-btn" data-category="css">CSS</button>
+            <button class="category-btn" data-category="react">React</button>
+            <button class="category-btn" data-category="node">Node.js</button>
+        </div>
+        
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-number">17</div>
+                <div class="stat-label">Snippets</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">6</div>
+                <div class="stat-label">Categories</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">24k+</div>
+                <div class="stat-label">Views</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Snippets Grid -->
+    <section class="snippets">
+        <div class="container">
+            <div class="snippets-grid">
+                <!-- Snippet 1 -->
+                <div class="snippet-card" data-category="javascript" data-delay="1">
+                    <div class="snippet-header">
+                        <h3 class="snippet-title"><i class="fab fa-js"></i>Debounce Function</h3>
+                        <p class="snippet-description">Optimize event handlers by limiting the rate at which a function can fire.</p>
+                        <div class="snippet-meta">
+                            <span class="snippet-language">JavaScript</span>
+                            <span class="snippet-usage">Performance</span>
+                        </div>
+                    </div>
+                    <div class="snippet-code">
+                        <pre><code class="language-javascript">function debounce(func, delay) {
+  let timeoutId;
+  return function(...args) {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => {
+      func.apply(this, args);
+    }, delay);
+  };
+}
+
+// Usage: 
+// const handleSearch = debounce(searchFunction, 300);
+// input.addEventListener('input', handleSearch);</code></pre>
+                    </div>
+                    <div class="snippet-actions">
+                        <button class="copy-btn"><i class="fas fa-copy"></i> Copy</button>
+                        <button class="save-btn"><i class="far fa-bookmark"></i></button>
+                    </div>
+                </div>
+                
+                <!-- Snippet 2 -->
+                <div class="snippet-card" data-category="react" data-delay="2">
+                    <div class="snippet-header">
+                        <h3 class="snippet-title"><i class="fab fa-react"></i>useFetch Hook</h3>
+                        <p class="snippet-description">Custom React hook for handling API requests with loading and error states.</p>
+                        <div class="snippet-meta">
+                            <span class="snippet-language">React</span>
+                            <span class="snippet-usage">API</span>
+                        </div>
+                    </div>
+                    <div class="snippet-code">
+                        <pre><code class="language-javascript">import { useState, useEffect } from 'react';
+
+function useFetch(url) {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(url);
+        const result = await response.json();
+        setData(result);
+      } catch (error) {
+        setError(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [url]);
+
+  return { data, loading, error };
+}
+
+// Usage in component:
+// const { data, loading, error } = useFetch('https://api.example.com/data');</code></pre>
+                    </div>
+                    <div class="snippet-actions">
+                        <button class="copy-btn"><i class="fas fa-copy"></i> Copy</button>
+                        <button class="save-btn"><i class="far fa-bookmark"></i></button>
+                    </div>
+                </div>
+                
+                <!-- Snippet 3 -->
+                <div class="snippet-card" data-category="css" data-delay="3">
+                    <div class="snippet-header">
+                        <h3 class="snippet-title"><i class="fab fa-css3-alt"></i>Center Elements</h3>
+                        <p class="snippet-description">Modern methods to center elements horizontally and vertically.</p>
+                        <div class="snippet-meta">
+                            <span class="snippet-language">CSS</span>
+                            <span class="snippet-usage">Layout</span>
+                        </div>
+                    </div>
+                    <div class="snippet-code">
+                        <pre><code class="language-css">/* Flexbox (recommended) */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Grid */
+.container {
+  display: grid;
+  place-items: center;
+}
+
+/* Position & Transform */
+.element {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Margin Auto (block elements) */
+.element {
+  display: block;
+  margin: 0 auto;
+}</code></pre>
+                    </div>
+                    <div class="snippet-actions">
+                        <button class="copy-btn"><i class="fas fa-copy"></i> Copy</button>
+                        <button class="save-btn"><i class="far fa-bookmark"></i></button>
+                    </div>
+                </div>
+                
+                <!-- Snippet 4 -->
+                <div class="snippet-card" data-category="node" data-delay="4">
+                    <div class="snippet-header">
+                        <h3 class="snippet-title"><i class="fab fa-node-js"></i>Express Error Handler</h3>
+                        <p class="snippet-description">Centralized error handling middleware for Express applications.</p>
+                        <div class="snippet-meta">
+                            <span class="snippet-language">Node.js</span>
+                            <span class="snippet-usage">Backend</span>
+                        </div>
+                    </div>
+                    <div class="snippet-code">
+                        <pre><code class="language-javascript">function errorHandler(err, req, res, next) {
+  console.error(err.stack);
+  
+  const statusCode = err.statusCode || 500;
+  
+  res.status(statusCode).json({
+    status: 'error',
+    statusCode,
+    message: err.message || 'Internal Server Error',
+    ...(process.env.NODE_ENV === 'development' && { stack: err.stack })
+  });
+}
+
+// Usage:
+// app.use(errorHandler);</code></pre>
+                    </div>
+                    <div class="snippet-actions">
+                        <button class="copy-btn"><i class="fas fa-copy"></i> Copy</button>
+                        <button class="save-btn"><i class="far fa-bookmark"></i></button>
+                    </div>
+                </div>
+                
+                <!-- Snippet 5 -->
+                <div class="snippet-card" data-category="javascript" data-delay="5">
+                    <div class="snippet-header">
+                        <h3 class="snippet-title"><i class="fab fa-js"></i>Format Date</h3>
+                        <p class="snippet-description">Format JavaScript Date objects into human-readable strings.</p>
+                        <div class="snippet-meta">
+                            <span class="snippet-language">JavaScript</span>
+                            <span class="snippet-usage">Utilities</span>
+                        </div>
+                    </div>
+                    <div class="snippet-code">
+                        <pre><code class="language-javascript">function formatDate(date, format = 'yyyy-mm-dd') {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
+  
+  const formats = {
+    'yyyy-mm-dd': `${year}-${month}-${day}`,
+    'dd/mm/yyyy': `${day}/${month}/${year}`,
+    'mm/dd/yyyy': `${month}/${day}/${year}`
+  };
+  
+  return formats[format] || `${year}-${month}-${day}`;
+}
+
+// Usage:
+// console.log(formatDate(new Date(), 'dd/mm/yyyy'));</code></pre>
+                    </div>
+                    <div class="snippet-actions">
+                        <button class="copy-btn"><i class="fas fa-copy"></i> Copy</button>
+                        <button class="save-btn"><i class="far fa-bookmark"></i></button>
+                    </div>
+                </div>
+                
+                <!-- Snippet 6 -->
+                <div class="snippet-card" data-category="html" data-delay="6">
+                    <div class="snippet-header">
+                        <h3 class="snippet-title"><i class="fab fa-html5"></i>Responsive Video Embed</h3>
+                        <p class="snippet-description">Embed YouTube/Vimeo videos that maintain aspect ratio on all devices.</p>
+                        <div class="snippet-meta">
+                            <span class="snippet-language">HTML/CSS</span>
+                            <span class="snippet-usage">Responsive</span>
+                        </div>
+                    </div>
+                    <div class="snippet-code">
+                        <pre><code class="language-html">&lt;div class="video-container"&gt;
+  &lt;iframe src="https://www.youtube.com/embed/VIDEO_ID" 
+          frameborder="0" 
+          allowfullscreen&gt;
+  &lt;/iframe&gt;
+&lt;/div&gt;
+
+&lt;style&gt;
+.video-container {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+  height: 0;
+  overflow: hidden;
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+&lt;/style&gt;</code></pre>
+                    </div>
+                    <div class="snippet-actions">
+                        <button class="copy-btn"><i class="fas fa-copy"></i> Copy</button>
+                        <button class="save-btn"><i class="far fa-bookmark"></i></button>
+                    </div>
+                </div>
+                
+                <!-- Additional snippets would follow the same pattern -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-col">
+                    <h3>AMAR CHEEMA</h3>
+                    <p>Full Stack Web Developer specializing in creating efficient, scalable web applications with cutting-edge technologies.</p>
+                    <div class="social-links">
+                        <a href="https://github.com/AmarCheema" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="https://x.com/codewithamar" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="https://dev.to/codewithamar" target="_blank" title="Dev.to"><i class="fab fa-dev"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="projects.html">Projects</a></li>
+                        <li><a href="skills.html">Skills</a></li>
+                        <li><a href="snippets.html">Code Snippets</a></li>
+                        <li><a href="connect.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Top Categories</h3>
+                    <ul class="footer-links">
+                        <li><a href="#javascript">JavaScript Snippets</a></li>
+                        <li><a href="#react">React Components</a></li>
+                        <li><a href="#node">Node.js Utilities</a></li>
+                        <li><a href="#css">CSS Tricks</a></li>
+                        <li><a href="#html">HTML Templates</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Amar Cheema. All rights reserved. | Code Snippets is a curated collection of reusable development snippets</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/components/prism-javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/components/prism-css.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/components/prism-markup.min.js"></script>
+    <script>
+        // Mobile menu toggle
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileMenu.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+        
+        // Generate code background
+        const codeBackground = document.getElementById('codeBackground');
+        const codeLines = [
+            'function buildProject(idea) {',
+            '  const solution = createSolution(idea);',
+            '  solution.optimize();',
+            '  solution.test();',
+            '  return solution.deploy();',
+            '}',
+            'class Developer {',
+            '  constructor(name) {',
+            '    this.name = name;',
+            '    this.skills = [];',
+            '  }',
+            '  learn(skill) {',
+            '    this.skills.push(skill);',
+            '  }',
+            '}',
+            'const amar = new Developer("Amar Cheema");',
+            'amar.learn("React");',
+            'amar.learn("Node.js");',
+            'const createWebApp = () => {',
+            '  // Build amazing things',
+            '  return "Success!";',
+            '};',
+            'const portfolio = {',
+            '  projects: 15,',
+            '  experience: "5+ years",',
+            '  technologies: ["JavaScript", "Python", "React", "Node.js"]',
+            '};'
+        ];
+        for (let i = 0; i < 20; i++) {
+            const codeLine = document.createElement('div');
+            codeLine.classList.add('code-line');
+            codeLine.textContent = codeLines[Math.floor(Math.random() * codeLines.length)];
+            codeLine.style.left = `${Math.random() * 100}%`;
+            codeLine.style.animationDelay = `${Math.random() * 5}s`;
+            codeLine.style.animationDuration = `${15 + Math.random() * 10}s`;
+            codeBackground.appendChild(codeLine);
+        }
+        
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.padding = '1rem 0';
+                navbar.style.backgroundColor = 'rgba(23, 23, 23, 0.98)';
+            } else {
+                navbar.style.padding = '1.5rem 0';
+                navbar.style.backgroundColor = 'rgba(30, 30, 30, 0.95)';
+            }
+        });
+        
+        // Category filtering
+        const categoryBtns = document.querySelectorAll('.category-btn');
+        const snippetCards = document.querySelectorAll('.snippet-card');
+        
+        categoryBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Update active button
+                categoryBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                const category = btn.dataset.category;
+                
+                // Filter snippets
+                snippetCards.forEach(card => {
+                    if (category === 'all' || card.dataset.category === category) {
+                        card.style.display = 'flex';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+        
+        // Search functionality
+        const searchInput = document.getElementById('searchInput');
+        searchInput.addEventListener('input', () => {
+            const searchTerm = searchInput.value.toLowerCase();
+            
+            snippetCards.forEach(card => {
+                const title = card.querySelector('.snippet-title').textContent.toLowerCase();
+                const description = card.querySelector('.snippet-description').textContent.toLowerCase();
+                const code = card.querySelector('code').textContent.toLowerCase();
+                
+                if (title.includes(searchTerm) || description.includes(searchTerm) || code.includes(searchTerm)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+        
+        // Copy code functionality
+        const copyButtons = document.querySelectorAll('.copy-btn');
+        
+        copyButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const card = button.closest('.snippet-card');
+                const codeBlock = card.querySelector('code');
+                const codeText = codeBlock.textContent;
+                
+                navigator.clipboard.writeText(codeText)
+                    .then(() => {
+                        const originalText = button.textContent;
+                        button.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                        
+                        setTimeout(() => {
+                            button.innerHTML = '<i class="fas fa-copy"></i> Copy';
+                        }, 2000);
+                    })
+                    .catch(err => {
+                        console.error('Failed to copy: ', err);
+                    });
+            });
+        });
+        
+        // Save snippet functionality
+        const saveButtons = document.querySelectorAll('.save-btn');
+        saveButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                button.classList.toggle('saved');
+                if (button.classList.contains('saved')) {
+                    button.innerHTML = '<i class="fas fa-bookmark"></i>';
+                } else {
+                    button.innerHTML = '<i class="far fa-bookmark"></i>';
+                }
+            });
+        });
+        
+        // Initialize Prism for syntax highlighting
+        Prism.highlightAll();
+    </script>
+</body>
+</html>
